@@ -50,7 +50,7 @@ export default {
   methods: {
     disconnect() {
       localStorage.clear();
-       document.location.href="http://localhost:8080/login";
+       this.$router.push('/login')
     }
   }
 }

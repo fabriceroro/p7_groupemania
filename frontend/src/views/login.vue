@@ -64,7 +64,7 @@ export default {
           .then(response => {
               console.log(response);
               localStorage.setItem('token',response.data.token)
-              document.location.href="http://localhost:8080/views/Message"; 
+              this.$router.push('/Message')
           })
           .catch(error => console.log(error));
       } 
