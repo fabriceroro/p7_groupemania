@@ -8,7 +8,7 @@
          <router-link class="nav-link" to="../views/signup">Inscription</router-link>
         </li>
         <li>
-        <router-link class="nav-link" to="../views/login">Connexion</router-link>
+        <router-link class="nav-link" to="../views/">Connexion</router-link>
         </li>
            
           

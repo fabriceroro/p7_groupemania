@@ -33,7 +33,7 @@
       <p>
          <small>
             Vous avez déjà un compte,
-            <router-link class="redirection-singup" to="../views/login">connecter-vous</router-link>
+            <router-link class="redirection-singup" to="../views/">connecter-vous</router-link>
           </small>
         </p>
     </form>

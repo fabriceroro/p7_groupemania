@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken"); // on importe le packgae qui créé et vérifie les token
+const jwt = require("jsonwebtoken"); // on importe le package qui créé et vérifie les token
 require("dotenv").config(); //permet de cacher le mots de passe autres utilisateurs sur github (enregistré dans .env)
 
 module.exports = (req, res, next) => {

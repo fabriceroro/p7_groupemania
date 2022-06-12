@@ -109,8 +109,35 @@ nav {
     }
 }
 
-      
+  @media (max-width: 767px) {
+
+small{
+display: none;
+}
+ul{
+  display: flex;
+  flex-direction: column;
+}
+img{
+  display: none;
+}  
+ }     
+       
   
+  @media (max-width: 440px) {
+
+.nav-bar{
+display: flex;
+flex-direction: column;
+height: 150px;
+}
+.navbar-nav{
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+    
+}
+  }
 
 
 </style>

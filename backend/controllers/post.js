@@ -1,5 +1,5 @@
 const { json } = require("body-parser");
-let models = require("../models"); // on appel notre modèle de shéma
+let models = require("../models"); 
 let jwtUtils = require("../utils/jwtUtils");
 let asyncLib = require("async"); //permet de mettre en place des waterfall
 const fs = require("fs"); //donne accès aux fonctions qui nous permettent de modifier le système de fichiers (supprimer les images)
@@ -42,11 +42,11 @@ exports.createPost = (req, res, next) => {
           where: { id: userId },
         })
           .then(function (userFound) {
-            //cas ou l'utilisateur a était trouvé
+            
             done(null, userFound);
           })
           .catch(function (err) {
-            return res.status(500).json({ error: "user à vérifier" }); //cas ou l'utilisateur n'est pas trouvé
+            return res.status(500).json({ error: "user à vérifier" }); 
           });
       },
       function (userFound, done) {
