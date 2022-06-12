@@ -58,7 +58,7 @@ export default {
      
         .then(() => {
           localStorage.clear();
-          document. location. href="http://localhost:8080/signup";
+          this.$router.push('/Signup')
         })
         }
 }   

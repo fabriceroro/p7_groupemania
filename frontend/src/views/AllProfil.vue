@@ -30,10 +30,10 @@ import axios from "axios";
         }
         
     },
-       mounted() { // je récupère les données du profil connecté
+       mounted() { 
       axios
         .get("http://localhost:3000/api/user/AllProfil",
-         {  //je récupère les éléments que je souhaite poster
+         {  
             headers: {
               Authorization: "Bearer " + window.localStorage.getItem("token") //je récupère la clé présent dans le local storage
             }
@@ -78,7 +78,7 @@ main{
   width: 100%;
   padding: 0;
 }
-.test li{ /*liste contenant les contenus, titre...*/
+.test li{
   background-color:#F2F2F2;
   margin-bottom: 30px;
   margin-left: 5px;

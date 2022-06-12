@@ -25,11 +25,10 @@
      <p v-if="item.User.attachementuser"> <img class="photoprofil" :src="item.User.attachementuser" alt="..."  /><br></p>
       <i>Publié par <strong>{{ item.User.username }}</strong> le {{item.createdAt.split('T')[0]}} à {{item.createdAt.slice(11,16)}}<br><br></i>
       <div class="contenu"> {{ item.content }} <br></div>
-      <!-- Id du posteur : {{ item.userId }} -->
-      <p v-if="item.attachement" > <img :src="item.attachement" alt="..."  /></p> <!-- j'affiche l'image uniquement si il y en a une-->
+      
+      <p v-if="item.attachement" > <img :src="item.attachement" alt="..."  /></p> 
       <p v-if="member.id==item.userId || member.isAdmin">  <button @click.prevent="DeleMessage(item.id, item.userId)" id="btn-sup" type="submit" class="btn btn-primary"><span class="cacher">Suprimer</span><i class="fas fa-trash-alt"></i></button> </p>    
-      <!--le bouton Supprimer s'affiche uniquement si la personne connectée est la personne qui a publié le message ou un admin-->
-      <!--partie création commentaire -->
+     
      
       <textarea type="text" id="comment" name="comment" class="form-control"  v-model="dataComment.content" 
                 placeholder="Insérer votre commentaire..."></textarea>
@@ -40,7 +39,7 @@
        <i><strong>{{ comment.User.username }}</strong> le {{comment.createdAt.split('T')[0]}} à {{comment.createdAt.slice(11,16)}}</i><br>
        {{ comment.content }}<br>
        <p v-if="member.id==comment.userId || member.isAdmin"> <button @click.prevent="DeleteComment(comment.id, comment.userId)" id="btn-sup" type="submit" class="btn btn-primary"><span class="cacher">Supprimer</span><i class="fas fa-trash-alt"></i></button></p>
-      </li><!--le bouton Supprimer s'affiche uniquement si la personne connectée est la personne qui a publié le commentaire ou un admin-->
+      </li>
       </ul> 
       </div>
       
@@ -72,8 +71,8 @@ export default {
       content:null,
       },
       
-      posts: [], //je récupère les infos des messages
-      member: [], //je récupère les infos de la personnes connectée
+      posts: [], 
+      member: [], 
     };
   },
    
@@ -93,11 +92,11 @@ mounted() { // je récupère les données du profil connecté
         .catch(error => console.log(error));
         //},
         axios
-        .get("http://localhost:3000/api/post/AllPost", //je récupère les messages postés
+        .get("http://localhost:3000/api/post/AllPost", //ont récupére tous les post
         
         {  
             headers: {
-              Authorization: "Bearer " + window.localStorage.getItem("token") //je récupère la clé présent dans le local storage
+              Authorization: "Bearer " + window.localStorage.getItem("token") //ont récupère le tokern dans le local storage
             }
           })
         
@@ -109,27 +108,27 @@ mounted() { // je récupère les données du profil connecté
         .catch(error => console.log(error));
 },   
   methods: {
- SendMessage() { //je récupère est envoie ce dont j'ai besoin pour créer un message
+ SendMessage() { 
   const formData = new FormData();
   formData.append('title', this.dataMessage.title); //.append créé une clé de valeur en récupérant la valeur des inputs (name = 'title' value='this.dataMessage...')
   formData.append('content', this.dataMessage.content);
   formData.append('inputFile', this.dataMessage.selectedFile);
 if (formData.get("title") !== null && formData.get("content") !== null
-     //.get renvoie la valeur associé a une clé créé précédement (ex: valeur de 'title' est le resulat de this.datamessage.title)   
+   
       ) {
         axios
           .post("http://localhost:3000/api/post/createPost", formData,{ //je récupère les éléments que je souhaite poster
             headers: {
-              Authorization: "Bearer " + window.localStorage.getItem("token") //je récupère la clé présent dans le local storage
+              Authorization: "Bearer " + window.localStorage.getItem("token") 
             }
           })
           .then(response => {
               console.log(response);
-              document. location. href="http://localhost:8080/Message"; //si tout est ok je recharge la page et j'affiche ensuite mon message
+              window.location.reload();
           })
           .catch(error => console.log(error));
       }  else {
-        console.log("oops !");
+        console.log('oops !');
       }
     },
   onFileChanged (event) { //me permet de charger un fichier (une image) au click
@@ -141,9 +140,9 @@ if (formData.get("title") !== null && formData.get("content") !== null
         window.confirm("Voulez vous vraiment supprimer le post?")
       )
     axios
-          .delete("http://localhost:3000/api/user/post/"+id,{data:{userIdOrder}, //je récupère les éléments que je souhaite poster
+          .delete("http://localhost:3000/api/post/"+id,{data:{userIdOrder}, 
             headers: {
-              Authorization: "Bearer " + window.localStorage.getItem("token") //je récupère la clé présent dans le local storage
+              Authorization: "Bearer " + window.localStorage.getItem("token") 
             },
         })
         .then(() => {
@@ -167,12 +166,12 @@ if (formData.get("title") !== null && formData.get("content") !== null
           
           {  //je récupère les éléments que je souhaite poster
             headers: {
-              Authorization: "Bearer " + window.localStorage.getItem("token") //je récupère la clé présent dans le local storage
+              Authorization: "Bearer " + window.localStorage.getItem("token") 
             }
           })
           .then(response => {
               console.log(response);
-              document. location. href="http://localhost:8080/message"; //si tout est ok je recharge la page et j'affiche ensuite le fil d'actualité
+              window.location.reload();
           })
           .catch(error => console.log(error));
       }
@@ -182,9 +181,9 @@ if (formData.get("title") !== null && formData.get("content") !== null
         window.confirm("Voulez vous vraiment supprimer le commentaire?")
       )
     axios
-          .delete("http://localhost:3000/api/post/comment/"+id,{data:{userIdOrder}, //je récupère les éléments que je souhaite poster
+          .delete("http://localhost:3000/api/post/comment/"+id,{data:{userIdOrder}, 
             headers: {
-              Authorization: "Bearer " + window.localStorage.getItem("token") //je récupère la clé présent dans le local storage
+              Authorization: "Bearer " + window.localStorage.getItem("token") 
             },
         })
         .then(() => {

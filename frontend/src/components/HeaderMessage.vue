@@ -50,7 +50,7 @@ export default {
   methods: {
     disconnect() {
       localStorage.clear();
-       this.$router.push('/login')
+       this.$router.push('/')
     }
   }
 }
@@ -61,7 +61,7 @@ export default {
 img{
   width: 120px;
 }
-.photoprofil{ /*photo profil de la page profil perso*/
+.photoprofil{
    height: 50px;
   width: 50px;
   border-radius: 50px;

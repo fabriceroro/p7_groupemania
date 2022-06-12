@@ -17,12 +17,6 @@
 <script>
 export default {
   name: "HeaderAllProfil",
-  methods: {
-    disconnect() {
-      localStorage.clear();
-       document. location. href="http://localhost:8080/login";
-    }
-  }
 };
 </script>
 
